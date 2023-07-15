@@ -15,8 +15,8 @@ var currentHumidity = document.getElementById("humidity");
 // Add an event listener to the search button
 searchButton.addEventListener("click", function () {
     var cityName = cityInput.value;
-    var requestUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + ApiKey;
-    // var queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ApiKey}`
+    // var requestUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + ApiKey;
+    var requestUrl = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${ApiKey}&units=metric`;
     fetch(requestUrl)
         .then(function (response) {
             return response.json();

@@ -19,3 +19,18 @@ main {
     display: flex;
     flex-direction: column;
 } 
+
+.search {
+    margin: 20px;
+}
+
+.info {
+    margin: 20px;
+    width: 60%;
+    height: 200px;
+    border: 2px solid;
+}
+
+.local-storage-list {
+    padding: 50px;
+}
