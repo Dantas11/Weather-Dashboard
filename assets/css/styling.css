@@ -1,0 +1,21 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    text-align: center;
+    color: white;
+    background-color: rgb(119, 0, 255);
+    padding: 20px;
+}
+
+main {
+    display: flex;
+    gap: 500px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+} 

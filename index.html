@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/styling.css">
     <title>Weather Dashboard</title>
 </head>
 <body>
@@ -11,10 +12,27 @@
     </header>
 
     <main>
-        <div>
-            <input type="text" id="place-input">
+        <!-- Search Container -->
+        <div class="container search">
+            <h2>Search for a city:</h2>
+            <input type="text" id="city-input">
             <button id="search-button">Search</button>
+            <button id="clear-button">Clear</button>
+            <div>
+                <ul id="weather-list"></ul>
+            </div>
         </div>
+
+        <!-- Info Container -->
+        <div class="container info">
+            <h2 class="city-name" id="current-city"></h2>
+            <p>Temp:<span class="current" id="temperature"></span></p>
+            <p>Wind:<span class="current" id="wind"></span></p>
+            <p>Humidity:<span class="current" id="humidity"></span></p>
+        </div>
+
+
+
     </main>
 <script src="assets/js/script.js" ></script>    
 </body>
