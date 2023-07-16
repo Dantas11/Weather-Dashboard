@@ -1,6 +1,6 @@
 // Declare a variable to store the searched city
 let city = "";
-// Variable declaration
+
 let searchCity = document.getElementById("search-city");
 let searchButton = document.getElementById("search-button");
 let clearButton = document.getElementById("clear-history");
@@ -34,7 +34,6 @@ function displayWeather(event) {
 
 // Here we create the fetch call
 function currentWeather(city) {
-  // Here we build the URL so we can get data from the server side
   const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=" + APIKey;
     fetch(queryURL)
     .then(function (response) {
@@ -53,8 +52,7 @@ function currentWeather(city) {
       const date = new Date(response.dt * 1000).toLocaleDateString();
       // Parse the response for the name of the city and concatenate the date and icon.
       currentCity.innerHTML = response.name + " (" + date + ")" + "<img src=" + iconurl + ">";
-      // Parse the response to display the current temperature.
-      // Convert the temp to Fahrenheit
+      // Parse the response to display the current temperature and convert the temp to Fahrenheit.
       const tempF = ((response.main.temp - 273.15) * 1.8 + 32).toFixed(2);
       currentTemperature.innerHTML = tempF + "&#8457;";
       // Display the Humidity
