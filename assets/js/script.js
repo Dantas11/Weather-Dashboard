@@ -46,10 +46,48 @@ function currentWeather(city) {
     .then(function (response) {
       // Parse the response to display the current weather including the City name, the Date, and the weather icon.
       console.log(response);
+      // Data object from server-side API for icon property.
+      const weathericon = response.weather[0].icon;
+      const iconurl = "https://openweathermap.org/img/wn/" + weathericon + "@2x.png";
+      // The date format method is taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+      const date = new Date(response.dt * 1000).toLocaleDateString();
+      // Parse the response for the name of the city and concatenate the date and icon.
+      currentCity.innerHTML = response.name + " (" + date + ")" + "<img src=" + iconurl + ">";
+      // Parse the response to display the current temperature.
+      // Convert the temp to Fahrenheit
+      const tempF = ((response.main.temp - 273.15) * 1.8 + 32).toFixed(2);
+      currentTemperature.innerHTML = tempF + "&#8457;";
+      // Display the Humidity
+      currentHumidity.innerHTML = response.main.humidity + "%";
+      // Display Wind speed and convert to MPH
+      const ws = response.wind.speed;
+      const windsmph = (ws * 2.237).toFixed(1);
+      currentWSpeed.innerHTML = windsmph + "MPH";
+
+      forecast(response.id);
+      if (response.cod == 200) {
+        sCity = JSON.parse(localStorage.getItem("cityname"));
+        console.log(sCity);
+        if (sCity == null) {
+          sCity = [];
+          sCity.push(city.toUpperCase());
+          localStorage.setItem("cityname", JSON.stringify(sCity));
+          addToList(city);
+        } else {
+          if (find(city) > 0) {
+            sCity.push(city.toUpperCase());
+            localStorage.setItem("cityname", JSON.stringify(sCity));
+            addToList(city);
+          }
+        }
+      }
     })
+    .catch(function (error) {
+      console.log("Error: " + error);
+    });
 }
 
-searchButton.addEventListener("click", displayWeather);
+searchButton.addEventListener("click", displayWeather);  
 
 
 
