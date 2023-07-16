@@ -89,6 +89,39 @@ function currentWeather(city) {
 
 searchButton.addEventListener("click", displayWeather);  
 
+// Here we display the 5-day forecast for the current city.
+function forecast(cityid) {
+    const dayover = false;
+    const queryforcastURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityid + "&appid=" + APIKey;
+    fetch(queryforcastURL)
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
+        }
+        return response.json();
+      })
+      .then(function (response) {
+        for (i = 0; i < 5; i++) {
+          const date = new Date(response.list[((i + 1) * 8) - 1].dt * 1000).toLocaleDateString();
+          const iconcode = response.list[((i + 1) * 8) - 1].weather[0].icon;
+          const iconurl = "https://openweathermap.org/img/wn/" + iconcode + ".png";
+          const tempK = response.list[((i + 1) * 8) - 1].main.temp;
+          const tempF = (((tempK - 273.5) * 1.8) + 32).toFixed(2);
+          const humidity = response.list[((i + 1) * 8) - 1].main.humidity;
+          const windSpeed = response.list[((i + 1) * 8) - 1].wind.speed;
+  
+          document.getElementById("fDate" + i).innerHTML = date;
+          document.getElementById("fImg" + i).innerHTML = "<img src=" + iconurl + ">";
+          document.getElementById("fTemp" + i).innerHTML = tempF + "&#8457;";
+          document.getElementById("fHumidity" + i).innerHTML = humidity + "%";
+          document.getElementById("fWind" + i).innerHTML = windSpeed + "MPH";
+        }
+      })
+      .catch(function (error) {
+        console.log("Error: " + error);
+      });
+  }
+
 
 
 
