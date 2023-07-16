@@ -43,7 +43,7 @@ Public
 
 ## SCREENSHOTS
 
-![Screenshot 2023-07-06 205336](https://github.com/Dantas11/COVID-Flight-Tracker/assets/125000756/f081577a-1bb1-439f-beb3-58fbcda86234)
+![Screenshot 2023-07-06 205336](https://github.com/Dantas11/Weather-Dashboard/blob/main/assets/images/weather-dashboard-image.png)
 
 ## API's USED
 
