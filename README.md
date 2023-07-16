@@ -24,8 +24,6 @@ Weather API : https://openweathermap.org/forecast5
 
 Github Deployment url: https://dantas11.github.io/Weather-Dashboard/
 
-Github repos:
-
-Thiago Dantas - https://github.com/Dantas11/Weather-Dashboard
+Github repos: Thiago Dantas - https://github.com/Dantas11/Weather-Dashboard
 
 
