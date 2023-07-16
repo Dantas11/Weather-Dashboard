@@ -120,7 +120,27 @@ function forecast(cityid) {
       .catch(function (error) {
         console.log("Error: " + error);
       });
-  }
+}
+
+// Dynamically add the passed city to the search history
+function addToList(c) {
+    const listEl = document.createElement("li");
+    listEl.innerHTML = c.toUpperCase();
+    listEl.classList.add("list-group-item");
+    listEl.setAttribute("data-value", c.toUpperCase());
+    document.querySelector(".list-group").appendChild(listEl);
+}
+  
+// Display the past search again when the list group item is clicked in search history
+function invokePastSearch(event) {
+    const liEl = event.target;
+    if (event.target.matches("li")) {
+      city = liEl.textContent.trim();
+      currentWeather(city);
+    }
+}
+
+
 
 
 
