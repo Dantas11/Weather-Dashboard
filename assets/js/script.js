@@ -140,6 +140,30 @@ function invokePastSearch(event) {
     }
 }
 
+// Add event listener to the list group
+document.querySelector(".list-group").addEventListener("click", invokePastSearch);
+
+// Clear the search history from local storage and the saved list
+function clearHistory(event) {
+  event.preventDefault();
+  sCity = [];
+  localStorage.removeItem("cityname");
+  document.querySelector(".list-group").innerHTML = "";
+}
+
+// Event listener for clear button click
+clearButton.addEventListener("click", clearHistory);
+  
+// Load the saved list from local storage when the page loads
+window.addEventListener("load", function () {
+    sCity = JSON.parse(localStorage.getItem("cityname"));
+    if (sCity !== null) {
+      sCity.forEach(function (city) {
+        addToList(city);
+        })
+    }
+})
+
 
 
 
