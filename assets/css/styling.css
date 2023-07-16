@@ -1,36 +1,25 @@
-/* * {
-    padding: 0;
-    margin: 0;
+* {
+    box-sizing: border-box;
 }
 
-header {
-    text-align: center;
-    color: white;
-    background-color: rgb(119, 0, 255);
-    padding: 20px;
+body {
+    font-size: 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-main {
-    display: flex;
-    gap: 500px;
+h3 {
+    font-weight: bold;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-} 
-
-.search {
-    margin: 20px;
+.forecast{
+    font-size: 0.9em;
 }
 
-.info {
-    margin: 20px;
-    width: 60%;
-    height: 200px;
-    border: 2px solid;
+span {
+    font-size: 1em;
 }
 
-.local-storage-list {
-    padding: 50px;
-} */
+li:hover {
+    background-color: lightslategray;
+    text-decoration: underline;
+}
