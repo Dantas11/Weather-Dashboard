@@ -26,6 +26,6 @@ Github Deployment url: https://dantas11.github.io/COVID-Flight-Tracker/
 
 Github repos:
 
-Thiago Dantas - https://github.com/Dantas11/COVID-Flight-Tracker
+Thiago Dantas - https://github.com/Dantas11/Weather-Dashboard
 
 
