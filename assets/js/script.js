@@ -1,66 +1,162 @@
+// Declare a variable to store the searched city
+let city = "";
+// Variable declaration
+let searchCity = document.getElementById("search-city");
+let searchButton = document.getElementById("search-button");
+let clearButton = document.getElementById("clear-history");
+let currentCity = document.getElementById("current-city");
+let currentTemperature = document.getElementById("temperature");
+let currentHumidity = document.getElementById("humidity");
+let currentWSpeed = document.getElementById("wind-speed");
+let sCity = [];
 
-var ApiKey = ("c32a31c6a7ffcbea5bdd726183442f5b");
+// Searches the city to see if it exists in the entries from the storage
+function find(c) {
+  for (var i = 0; i < sCity.length; i++) {
+    if (c.toUpperCase() === sCity[i]) {
+      return -1;
+    }
+  }
+  return 1;
+}
 
-var cityInput = document.getElementById("city-input");
-var searchButton = document.getElementById("search-button");
-var clearButton = document.getElementById("clear-button");
-var LocalStorageList = document.getElementById("local-storage-list");
+// Set up the API key
+let APIKey = "c32a31c6a7ffcbea5bdd726183442f5b";
 
-var currentCity = document.getElementById("current-city");
-var currentTemperature = document.getElementById("temperature");
-var currentWind = document.getElementById("wind");
-var currentHumidity = document.getElementById("humidity");
+// Display the current and future weather to the user after grabbing the city from the input text box.
+function displayWeather(event) {
+  event.preventDefault();
+  if (searchCity.value.trim() !== "") {
+    city = searchCity.value.trim();
+    currentWeather(city);
+  }
+}
 
-
-// Add an event listener to the search button
-searchButton.addEventListener("click", function () {
-    var cityName = cityInput.value;
-    // var requestUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + ApiKey;
-    var requestUrl = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${ApiKey}&units=metric`;
-    fetch(requestUrl)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data);
-            var currentCity = data.name;
-            var currentTemperature = data.main.temp;
-            var currentWind = data.wind.speed;
-            var currentHumidity = data.main.humidity;
-
-            document.getElementById('current-city').textContent = currentCity;
-            document.getElementById('temperature').textContent = currentTemperature;
-            document.getElementById('wind').textContent = currentWind;
-            document.getElementById('humidity').textContent = currentHumidity;
-
-            // Local storage
-            var searchHistory = localStorage.getItem('searchHistory');
-            var search = searchHistory ? JSON.parse(searchHistory) : [];
-            search.push(currentCity);
-            localStorage.setItem('searchHistory', JSON.stringify(search));
-
-            // Update the HTML with the saved searches
-            var LocalStorageList = document.getElementById('local-storage-list');
-            LocalStorageList.innerHTML = ''; 
-
-            search.forEach(function (search) {
-                var listItem = document.createElement('li');
-                listItem.textContent = search;
-                LocalStorageList.appendChild(listItem);
-            });
-
-            // Clear search list from local storage
-            function clearLocalStorage() {
-                localStorage.removeItem('searchHistory');
-                location.reload(); 
-              }
-              
-              // Add an event listener to the clear button
-              var clearButton = document.getElementById("clear-button");
-              clearButton.addEventListener('click', clearLocalStorage);
-    
+// Here we create the fetch call
+function currentWeather(city) {
+  // Here we build the URL so we can get data from the server side
+  const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=" + APIKey;
+    fetch(queryURL)
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error("Network response was not OK");
+      }
+      return response.json();
     })
-})
+    .then(function (response) {
+      // Parse the response to display the current weather including the City name, the Date, and the weather icon.
+      console.log(response);
+    })
+}
+
+searchButton.addEventListener("click", displayWeather);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var ApiKey = ("c32a31c6a7ffcbea5bdd726183442f5b");
+
+// var cityInput = document.getElementById("city-input");
+// var searchButton = document.getElementById("search-button");
+// var clearButton = document.getElementById("clear-button");
+// var LocalStorageList = document.getElementById("local-storage-list");
+
+// var currentCity = document.getElementById("current-city");
+// var currentTemperature = document.getElementById("temperature");
+// var currentWind = document.getElementById("wind");
+// var currentHumidity = document.getElementById("humidity");
+
+
+// // Add an event listener to the search button
+// searchButton.addEventListener("click", function () {
+//     var cityName = cityInput.value;
+//     // var requestUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + ApiKey;
+//     var requestUrl = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${ApiKey}&units=metric`;
+//     fetch(requestUrl)
+//         .then(function (response) {
+//             return response.json();
+//         })
+//         .then(function (data) {
+//             console.log(data);
+//             var currentCity = data.name;
+//             var currentTemperature = data.main.temp;
+//             var currentWind = data.wind.speed;
+//             var currentHumidity = data.main.humidity;
+
+//             document.getElementById('current-city').textContent = currentCity;
+//             document.getElementById('temperature').textContent = currentTemperature;
+//             document.getElementById('wind').textContent = currentWind;
+//             document.getElementById('humidity').textContent = currentHumidity;
+
+//             // Local storage
+//             var searchHistory = localStorage.getItem('searchHistory');
+//             var search = searchHistory ? JSON.parse(searchHistory) : [];
+//             search.push(currentCity);
+//             localStorage.setItem('searchHistory', JSON.stringify(search));
+
+//             // Update the HTML with the saved searches
+//             var LocalStorageList = document.getElementById('local-storage-list');
+//             LocalStorageList.innerHTML = ''; 
+
+//             search.forEach(function (search) {
+//                 var listItem = document.createElement('li');
+//                 listItem.textContent = search;
+//                 LocalStorageList.appendChild(listItem);
+//             });
+
+//             // Clear search list from local storage
+//             function clearLocalStorage() {
+//                 localStorage.removeItem('searchHistory');
+//                 location.reload(); 
+//               }
+              
+//               // Add an event listener to the clear button
+//               var clearButton = document.getElementById("clear-button");
+//               clearButton.addEventListener('click', clearLocalStorage);
+    
+//     })
+// })
 
 
 
